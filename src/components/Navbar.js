@@ -9,7 +9,7 @@ import { useProductsContext } from "../context/products_context";
 import { useUserContext } from "../context/user_context";
 
 const Nav = () => {
-	const { openSidebar, isSideBarOpen } = useProductsContext();
+	const { openSidebar } = useProductsContext();
 	return (
 		<NavContainer>
 			<div className='nav-center'>
