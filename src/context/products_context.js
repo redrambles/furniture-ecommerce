@@ -19,6 +19,9 @@ const initialState = {
 	productsError: false,
 	products: [],
 	featuredProducts: [],
+	singleProductLoading: false,
+	singleProductError: false,
+	singleProduct: {},
 };
 
 const ProductsContext = React.createContext();
@@ -27,7 +30,6 @@ export const ProductsProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, initialState);
 
 	const openSidebar = () => {
-		console.log("here");
 		dispatch({ type: SIDEBAR_OPEN });
 	};
 
@@ -46,11 +48,28 @@ export const ProductsProvider = ({ children }) => {
 		}
 	};
 
+	// We'll only trigger this fetch when a single page view is requested - with a useEffect in that component
+	const fetchSingleProduct = async (url) => {
+		dispatch({ type: GET_SINGLE_PRODUCT_BEGIN });
+		try {
+			const response = await axios.get(url);
+			const product = response.data;
+			dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: product });
+		} catch (error) {
+			dispatch({ type: GET_SINGLE_PRODUCT_ERROR, payload: error });
+		}
+	};
+
+	// We want to show products right away, so we need a useEffect
 	useEffect(() => {
 		fetchProducts(url);
 	}, []);
 
-	return <ProductsContext.Provider value={{ openSidebar, closeSidebar, ...state }}>{children}</ProductsContext.Provider>;
+	return (
+		<ProductsContext.Provider value={{ openSidebar, closeSidebar, fetchSingleProduct, ...state }}>
+			{children}
+		</ProductsContext.Provider>
+	);
 };
 // make sure use
 export const useProductsContext = () => {
