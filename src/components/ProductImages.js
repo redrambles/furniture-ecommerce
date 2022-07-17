@@ -7,7 +7,7 @@ const ProductImages = ({ images = [] }) => {
 	// The first image in the array is the main one when we first load the page
 	// Then when a thumbnail is clicked, it becomes the main image
 	const [main, setMain] = useState(images[0]);
-	console.log(main);
+
 	return (
 		<Wrapper>
 			<img src={main?.url} alt='Main Product' className='main' />
