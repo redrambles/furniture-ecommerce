@@ -49,6 +49,58 @@ const filter_reducer = (state, action) => {
 			}
 			return { ...state, filteredProducts: tempProducts };
 		}
+		case UPDATE_FILTERS: {
+			console.log("filtering products");
+			const { name, value } = action.payload;
+			return { ...state, filters: { ...state.filters, [name]: value } };
+		}
+		case FILTER_PRODUCTS: {
+			const { allProducts } = state;
+			// Before we filter anything, start with a fresh copy of all our products
+			const { text, category, company, color, price, shipping } = state.filters;
+
+			let tempProducts = [...allProducts];
+			// Filter this monster
+			if (text) {
+				tempProducts = tempProducts.filter((product) => {
+					return product.name.toLowerCase().startsWith(text.toLowerCase());
+				});
+			}
+			if (category !== "all") {
+				tempProducts = tempProducts.filter((product) => product.category === category);
+			}
+			if (company !== "all") {
+				tempProducts = tempProducts.filter((product) => product.company === company);
+			}
+			if (shipping) {
+				tempProducts = tempProducts.filter((product) => product.shipping);
+			}
+			if (color !== "all") {
+				tempProducts = tempProducts.filter((product) => product.colors.includes(color));
+			}
+			if (price !== state.filters.maxPrice) {
+				tempProducts = tempProducts.filter((product) => product.price <= price);
+			}
+
+			return { ...state, filteredProducts: tempProducts };
+		}
+		case CLEAR_FILTERS: {
+			// we don't want to overwrite all the default filters - so we are spreading
+			// them first in order to keep the min and maxPrice values, and we are
+			// setting the price value to the maxPrice as well.
+			return {
+				...state,
+				filters: {
+					...state.filters,
+					text: "",
+					company: "all",
+					category: "all",
+					color: "all",
+					price: state.filters.maxPrice,
+					shipping: false,
+				},
+			};
+		}
 		default:
 			throw new Error(`No Matching "${action.type}" - action type`);
 	}

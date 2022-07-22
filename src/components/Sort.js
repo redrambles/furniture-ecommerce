@@ -2,6 +2,8 @@ import React from "react";
 import { useFilterContext } from "../context/filter_context";
 import { BsFillGridFill, BsList } from "react-icons/bs";
 import styled from "styled-components";
+
+
 const Sort = () => {
 	const { filteredProducts: products, gridView, setGridView, setListView, sort, updateSort } = useFilterContext();
 	return (
