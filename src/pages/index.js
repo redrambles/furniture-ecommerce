@@ -5,6 +5,6 @@ import SingleProduct from "./SingleProductPage";
 import Cart from "./CartPage";
 import Error from "./ErrorPage";
 import Checkout from "./CheckoutPage";
-import Private from "./PrivateRoute";
+import PrivateRoute from "./PrivateRoute";
 
-export { Home, About, Products, SingleProduct, Cart, Error, Checkout, Private };
+export { Home, About, Products, SingleProduct, Cart, Error, Checkout, PrivateRoute };
