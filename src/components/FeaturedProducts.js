@@ -24,6 +24,9 @@ const FeaturedProducts = () => {
 			<div className='section-center featured'>
 				{featured && featured.slice(0, 3).map((feat) => <Product key={feat.id} {...feat} />)}
 			</div>
+			<Link to='/products' className='btn'>
+				All products
+			</Link>
 		</Wrapper>
 	);
 };
