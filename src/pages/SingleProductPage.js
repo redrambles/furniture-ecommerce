@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useProductsContext } from "../context/products_context";
 import { single_product_url as url } from "../utils/constants";
 import { formatPrice } from "../utils/helpers";
@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 const SingleProductPage = () => {
 	const { id } = useParams();
-	const history = useHistory();
+	const navigate = useNavigate();
 
 	const {
 		singleProduct: product,
@@ -26,7 +26,7 @@ const SingleProductPage = () => {
 	useEffect(() => {
 		if (error) {
 			setTimeout(() => {
-				history.push("/");
+				navigate("/");
 			}, 3000);
 		}
 	}, [error]);
