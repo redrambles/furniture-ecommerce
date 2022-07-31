@@ -1,22 +1,28 @@
-## Notes
+# Fancy Furniture Store
 
-#### Older React Version
+#### Because you know you want one
 
-```
-"react": "^16.13.1",
-"react-dom": "^16.13.1",
-"react-scripts": "3.4.3",
-```
+Hello and welcome! 
 
-#### Current React Version
+This is a project that uses several techonolgies in order to build a mock furniture store.
 
-```
-"react": "^17.0.1",
-"react-dom": "^17.0.1",
-"react-scripts": "4.0.0",
-```
+---
 
-#### Alternative fix
+![](https://cldup.com/ggOpcOj6R0.png)
 
-.env file in the root
-FAST_REFRESH=FALSE
+---
+
+
+[**Live Project Here**](https://react-fancy-furniture-store.netlify.app)  👈🏼 
+
+---
+
+### Features
+- React (and a smidge of Node)
+- Styled Components
+- Contexts and Reducers
+- Product Sorting and Filtering
+- React Router DOM
+- Serverless Functions
+- Auth0
+- Stripe Integration
